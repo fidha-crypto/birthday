@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow-x: hidden;
+      color: #fff;
+      font-family: "DM Sans", sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, #ffb3c6 0 2px, transparent 3px),
+        radial-gradient(circle at 85% 25%, #ffe08a 0 3px, transparent 4px),
+        radial-gradient(circle at 25% 80%, #b8f2e6 0 3px, transparent 4px),
+        linear-gradient(135deg, #30104b, #8a1c7c 55%, #e63973);
+      background-size: 120px 120px, 160px 160px, 140px 140px, cover;
+    }
+
+    .card {
+      width: min(90%, 700px);
+      margin: 30px auto;
+      padding: 55px 25px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 32px;
+      background: rgba(255,255,255,.12);
+      box-shadow: 0 25px 80px rgba(20,0,35,.35);
+      backdrop-filter: blur(14px);
+      animation: appear 1s ease-out;
+    }
+
+    .cake { font-size: 72px; animation: bounce 2s infinite; }
+
+    h1 {
+      margin: 12px 0;
+      font: 800 clamp(42px, 9vw, 76px)/1.05 "Playfair Display", serif;
+      text-shadow: 0 5px 25px rgba(0,0,0,.2);
+    }
+
+    h1 span, h2 { color: #ffe08a; }
+
+    p {
+      max-width: 480px;
+      margin: 18px auto 25px;
+      color: #ffeaf3;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    button {
+      margin: 7px;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 25px;
+      color: #5b174e;
+      background: #ffe08a;
+      font: 600 16px "DM Sans", sans-serif;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.2);
+    }
+
+    .floating {
+      position: fixed;
+      top: -35px;
+      z-index: 5;
+      pointer-events: none;
+      animation: fall 3s linear forwards;
+    }
+
+    .gift-area, .wish-area {
+      display: none;
+      margin: 28px auto 0;
+      padding: 22px;
+      max-width: 520px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 22px;
+      background: rgba(255,255,255,.12);
+      animation: appear .5s ease-out;
+    }
+
+    .gift-box { font-size: 90px; animation: pop .7s ease-out; }
+
+    .gift-photo {
+      display: none;
+      width: min(80%, 300px);
+      max-height: 260px;
+      object-fit: cover;
+      margin: 18px auto;
+      border: 5px solid #ffe08a;
+      border-radius: 22px;
+      box-shadow: 0 12px 35px #1c002c88;
+      animation: pop .7s ease-out;
+    }
+
+    .wish-area p { margin-bottom: 0; }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(25px) scale(.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) rotate(-4deg); }
+      50% { transform: translateY(-10px) rotate(4deg); }
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(600deg); opacity: 0; }
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="cake">🎂</div>
+
+    <h1>Happy Birthday,<br><span>dhanukkkaaaaaaa</span></h1>
+
+    <p>
+      Wishing you a day filled with laughter, lovely surprises,
+      and all the happiness you deserve. Have the best birthday ever! ✨
+    </p>
+
+    <button onclick="celebrate()">Make a wish ✨</button>
+    <button onclick="openGift()">Open 🎁</button>
+    <button onclick="showWish()">It's for you 💌</button>
+
+    <div class="gift-area" id="giftArea">
+      <div class="gift-box" id="giftBox">🎁</div>
+      <img class="gift-photo" id="giftPhoto" src="love.html.jpeg" alt="Birthday gift">
+      <h2>Surprise! 💖</h2>
+      <p>This gift is filled with love for you!</p>
+    </div>
+
+    <div class="wish-area" id="wishArea">
+      <h2>A Birthday Wish for You 💌</h2>
+      <p>
+        Happy Birthday, my love ❤️
+
+You are the most beautiful part of my life, and every day with you feels special. Thank you for filling my heart with happiness, love, and countless precious memories.
+
+On your birthday, I wish you all the joy you bring into my life to come back to you a hundred times over. May all your dreams come true, and may we make many more beautiful memories together.
+
+I love you so much. Happy Birthday, my everything! 🎂💖✨😘
+      </p>
+    </div>
+  </main>
+
+  <script>
+    function showMessage() {
+  document.getElementById("wishMessage").style.display = "block";
+  makeFloating(["💖", "💕", "❤️", "💗"], 25);
+}
+    function celebrate() {
+      makeFloating(["🎉", "✨", "🎈", "💖", "🌟", "🎊"], 45);
+    }
+
+    function openGift() {
+      const area = document.getElementById("giftArea");
+      const box = document.getElementById("giftBox");
+      const photo = document.getElementById("giftPhoto");
+
+      area.style.display = "block";
+      box.style.display = "block";
+      photo.style.display = "none";
+
+      setTimeout(() => {
+        box.style.display = "none";
+        photo.style.display = "block";
+      }, 700);
+
+      makeFloating(["💖", "💕", "❤️", "💗"], 30);
+    }
+
+    function showWish() {
+      const area = document.getElementById("wishArea");
+      area.style.display = area.style.display === "block" ? "none" : "block";
+      makeFloating(["💖", "💕", "❤️", "💗"], 25);
+    }
+
+    function makeFloating(emojis, count) {
+      for (let i = 0; i < count; i++) {
+        const item = document.createElement("div");
+        item.className = "floating";
+        item.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        item.style.left = Math.random() * 100 + "vw";
+        item.style.fontSize = (20 + Math.random() * 20) + "px";
+        item.style.animationDuration = (2 + Math.random() * 3) + "s";
+        document.body.appendChild(item);
+        setTimeout(() => item.remove(), 5000);
+      }
+    }
+  </script>
+</body>
+</html>
